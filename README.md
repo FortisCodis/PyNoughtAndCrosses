@@ -13,7 +13,7 @@ Implementation of the famous **Tic-Tac-Toe** game in python.
 The rules are explain on wikipedia, you can check [here](https://en.wikipedia.org/wiki/Tic-tac-toe)
 
 ### Code Structure
-I do this projet with an **oriented-object language** so I will use this structure in my project.
+I do this project with an **oriented-object language** so I will use this structure in my project.
 
 #### The board
 The board will be represented by an object `Board`.
@@ -26,13 +26,13 @@ The board will be represented by an object `Board`.
 
 *Methods*
 
-| Method Name   | Role                                                                                     | Args                    |
-|---------------|------------------------------------------------------------------------------------------|-------------------------|
-| `add_symbol`  | Add a symbol on the board                                                                | NO ARGS                 |
-| `__str__`     | When we call the function `print`                                                        | NO ARGS                 |
-| `line(n)`     | Return a `tuple` of the line number n                                                    | `n` : index of the line |
-| `column(n)`   | Return a `tuple` of the column number n                                                  | `n` : index of the line |
-| `diagonal(n)` | Return a `tuple` of the diagonal number n (there are 2, the first start from the (0, 0)) | `n` : index of the line |
+| Method Name                | Role                                                         | Args                                                         |
+| -------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| `add_symbol(symbol, cell)` | Add a symbol on the board                                    | `symbol` : symbol to add (must be `"X"` or `"O"`), cell : coordinates of the cell wanted (tuple) |
+| `__str__`                  | When we call the function `print`                            | NO ARGS                                                      |
+| `line(n)`                  | Return a `tuple` of the line number n                        | `n` : index of the line                                      |
+| `column(n)`                | Return a `tuple` of the column number n                      | `n` : index of the line                                      |
+| `diagonal(n)`              | Return a `tuple` of the diagonal number n (there are 2, the first start from the (0, 0)) | `n` : index of the line                                      |
 
 ### The Game
 

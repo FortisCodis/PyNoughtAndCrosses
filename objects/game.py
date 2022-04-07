@@ -21,7 +21,7 @@ class Game:
         self.player = "X"
 
     @staticmethod
-    def __victory_display(winner):
+    def __victory_display(winner: str):
         print(f"The player {winner} won. Well done !!")
 
     @staticmethod
@@ -29,7 +29,7 @@ class Game:
         print(f"There is  equality...")
 
     @staticmethod
-    def __ask_player():
+    def __which_cell():
         """
         Demands the cell which the player wants to put his symbol.
 
@@ -41,17 +41,28 @@ class Game:
 
         return cell_line, cell_column
 
-    def __is_won(self):
+    @staticmethod
+    def play_again() -> bool:
+        """
+        Demands if player want to play another game.
+
+        :return: True, False
+        """
+        request = input("Do you want to play again [y/n]?").lower()
+
+        return True if request == 'y' else False
+
+    def __is_won(self) -> bool or str:
         """
         Test if the game is won and by which player.
 
-        :return: False (if the game isn't won), (True, "X") (if the "X" player won), (True, "O") (if the "O" player won)
+        :return: False (if the game isn't won), "X" (if the "X" player won), "O" (if the "O" player won)
         """
         X = ("X", "X", "X")
         O = ("O", "O", "O")
 
         winner = False
-        for n in range(len(self.board.table)):
+        for n in range(len(self.board)):
 
             if self.board.line(n) == X or self.board.line(n) == O:
                 winner = self.board.line(n)[0]
@@ -63,11 +74,11 @@ class Game:
                 winner = self.board.column(n)[0]
 
         if winner:
-            self.__victory_display()
+            self.__victory_display(str(winner))
 
         return winner
 
-    def __equality(self):
+    def __equality(self) -> bool:
         """
         Tests if there is equality.
 
@@ -79,7 +90,7 @@ class Game:
 
         return False
 
-    def run(self):
+    def run(self) -> None:
         """
         Runs the game.
 
@@ -94,12 +105,12 @@ class Game:
 
             print(f"This is the turn of the {self.player} player: \n")
 
-            cell_coordinates = self.__ask_player()
+            cell_coordinates = self.__which_cell()
 
+            # Test while the cell wanted is already taken
             while self.board.add_symbol(self.player, cell_coordinates[0], cell_coordinates[1]) is False:
                 print("\nThe cell wanted is not empty. Please, retry...")
-                cell_coordinates = self.__ask_player()
+                cell_coordinates = self.__which_cell()
 
+            # Changing player
             self.player = "X" if self.player == "O" else "O"
-
-
